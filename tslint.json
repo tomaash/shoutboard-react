@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint-config-standard", "tslint-react"],
+  "rules": {
+    "space-before-function-paren": false,
+    "trailing-comma": false,
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
+    "jsx-no-lambda": false
+  }
+}
