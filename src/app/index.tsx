@@ -23,7 +23,7 @@ const rootStores = {
 
 ReactDOM.render(
   <Provider {...rootStores} >
-    <Router history={routerStore.browserHistory} >
+    <Router history={routerStore.history} >
       <App>
         <Switch>
           <Route exact path='/home' component={Home as any} />
