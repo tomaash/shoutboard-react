@@ -1,12 +1,16 @@
-import { History } from 'history'
+import { History, createBrowserHistory } from 'history'
 import { RouterStore as BaseRouterStore, syncHistoryWithStore } from 'mobx-react-router'
 
 export class RouterStore extends BaseRouterStore {
-  constructor(history?: History) {
+  static instance: RouterStore
+  browserHistory: History
+  constructor() {
     super()
-    if (history) {
-      this.history = syncHistoryWithStore(history, this)
-    }
+    this.browserHistory = createBrowserHistory()
+    this.history = syncHistoryWithStore(this.browserHistory, this)
+  }
+  static getInstance() {
+    return RouterStore.instance || (RouterStore.instance = new RouterStore())
   }
 }
 

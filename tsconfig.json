@@ -12,6 +12,7 @@
     "noImplicitReturns": false,
     "removeComments": true,
     "strictNullChecks": false,
+    "importHelpers": true,
     "outDir": "build",
     "lib": [
       "es6",

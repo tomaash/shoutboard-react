@@ -5,3 +5,7 @@ body {
 .container {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.floatRight {
+  float: right;
+}
