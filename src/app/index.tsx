@@ -9,7 +9,7 @@ import { App } from './app.component'
 import { AppStore } from './app.store'
 import { RouterStore } from './router.store'
 
-import { FormComponent } from './form/form.component'
+import { Form } from './form/form.component'
 import { Home } from './home/home.component'
 import { Posts } from './posts/posts.component'
 
@@ -28,7 +28,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path='/home' component={Home as any} />
           <Route exact path='/posts' component={Posts as any} />
-          <Route exact path='/form' component={FormComponent as any} />
+          <Route exact path='/form' component={Form as any} />
           <Redirect from='/' to='/home' />
         </Switch>
       </App>

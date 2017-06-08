@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3002",
+    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build": "webpack -p"
   },
   "license": "MIT",
@@ -48,6 +48,7 @@
   "dependencies": {
     "apollo-client": "^1.4.0",
     "classnames": "^2.2.5",
+    "formstate": "^0.21.1",
     "graphql-tag": "^2.2.2",
     "mobx": "^3.1.11",
     "mobx-react": "^4.2.1",
@@ -57,6 +58,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-toolbox": "^2.0.0-beta.12",
-    "tslib": "^1.7.1"
+    "tslib": "^1.7.1",
+    "validator": "^7.0.0"
   }
 }
