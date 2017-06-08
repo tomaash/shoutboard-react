@@ -1,4 +1,4 @@
-# Frontend Boilerplate with React, MobX and TypeScript
+# shoutboard-react
 
 A react-mobx-webpack-postcss-typescript boilerplate based on TJ's [frontend-boilerplate](https://github.com/tj/frontend-boilerplate).
 
