@@ -1,7 +1,6 @@
 import { observable, action } from 'mobx'
 import gql from 'graphql-tag'
 import { AppStore } from '../app.store'
-import { RouterStore } from '../router.store'
 
 const PostsQuery = gql`
   query PostsQuery {
@@ -26,18 +25,20 @@ interface PostsQueryResult {
   allPosts: Array<Post>
 }
 
-const appStore = AppStore.getInstance()
-const routerStore = RouterStore.getInstance()
-
 export class PostsStore {
+  appStore: AppStore
+
   @observable posts: Array<Post> = []
 
+  constructor() {
+    this.appStore = AppStore.getInstance()
+  }
+
   async initializePosts() {
-    const result = await appStore.apolloClient.query<PostsQueryResult>({
+    const result = await this.appStore.apolloClient.query<PostsQueryResult>({
       query: PostsQuery,
       fetchPolicy: 'network-only'
     })
     this.posts = result.data.allPosts
-    // routerStore.push('/home')
   }
 }

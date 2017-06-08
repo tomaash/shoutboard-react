@@ -2,6 +2,7 @@ import * as React from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { observable, action } from 'mobx'
 import { Input } from 'react-toolbox/lib/input'
+import { Button } from 'react-toolbox/lib/button'
 import { FormStore } from './form.store'
 import { AppStore } from '../app.store'
 
@@ -44,11 +45,26 @@ export class FormComponent extends React.Component<FormComponentProps, any> {
       <Input
         type='text'
         multiline={true}
+        rows={3}
         label='Message'
         name='message'
         error={formStore.message.error}
         value={formStore.message.value}
         onChange={formStore.message.onChange}
+      />
+
+      <Button
+        label='Cancel'
+        onClick={formStore.goBack}
+        raised
+        accent
+      /> &nbsp;
+      <Button
+        label='Submit'
+        onClick={formStore.submit}
+        raised
+        disabled={formStore.form.hasError}
+        primary
       />
 
     </div>

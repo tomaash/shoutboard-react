@@ -7,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
-    "build": "webpack -p"
+    "server": "node app-server",
+    "build": "webpack -p",
+    "postinstall": "yarn build"
   },
   "license": "MIT",
   "devDependencies": {
@@ -48,6 +50,7 @@
   "dependencies": {
     "apollo-client": "^1.4.0",
     "classnames": "^2.2.5",
+    "express": "^4.15.3",
     "formstate": "^0.21.1",
     "graphql-tag": "^2.2.2",
     "mobx": "^3.1.11",
