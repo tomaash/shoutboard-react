@@ -2,7 +2,7 @@ import * as React from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { observable, action } from 'mobx'
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Button } from 'react-toolbox/lib/button'
 import { PostsStore } from './posts.store'
 import { AppStore } from '../app.store'
@@ -36,9 +36,9 @@ export class PostsComponent extends React.Component<PostsComponentProps, any> {
   render() {
     const { postsStore, appStore } = this.props
     return <div>
-      <Link to='form'>
+      <NavLink to='form'>
         <Button icon='add' floating accent className={appStyle.floatRight} />
-      </Link>
+      </NavLink>
       <h3>Hello {appStore.username}</h3>
       {postsStore.posts.map(post =>
         <Card key={post.id} className={style.messageCard}>

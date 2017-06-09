@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import * as style from './app.css'
 
 export class App extends React.Component<any, any> {
@@ -15,8 +15,8 @@ export class App extends React.Component<any, any> {
     return <div className={style.container}>
       <h1>Shoutboard Application</h1>
       <div>
-        <Link to='home'>Home</Link>&nbsp;
-        <Link to='posts'>Posts</Link>
+        <NavLink to='/home' activeClassName={style.active}>Home</NavLink>&nbsp;
+        <NavLink to='/posts' activeClassName={style.active}>Posts</NavLink>
       </div>
       <div>
         {this.props.children}

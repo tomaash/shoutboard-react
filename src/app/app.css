@@ -6,6 +6,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.active {
+  color: red;
+}
+
 .floatRight {
   float: right;
 }
