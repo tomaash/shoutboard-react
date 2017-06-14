@@ -6,7 +6,6 @@ import { AppStore } from '../app.store'
 import { RouterStore } from '../router.store'
 import * as isLength from 'validator/lib/isLength'
 
-
 const AddPostMutation = gql`
   mutation AddPostMutation($name: String!, $title: String!, $message: String!) {
     createPost(

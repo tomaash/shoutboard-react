@@ -39,7 +39,7 @@ export class HomeComponent extends React.Component<HomeComponentProps, any> {
         value={appStore.username}
         onChange={appStore.onUsernameChange}
       />
-      <span>Clicks since last visit: {homeStore.counter}</span>
+      <span>{homeStore.counterMessage}</span>
       <button onClick={homeStore.increment}>Click!</button>
     </div>
   }
