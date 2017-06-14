@@ -31,6 +31,7 @@ interface FormComponentProps {
 export class FormComponent extends React.Component<FormComponentProps, any> {
   render() {
     const { appStore, formStore } = this.props
+    const { postFormState } = formStore
     return <div>
       <h2> Create a new post </h2>
       <h3> You are now posting as {appStore.username} </h3>
@@ -38,9 +39,9 @@ export class FormComponent extends React.Component<FormComponentProps, any> {
         type='text'
         label='Title'
         name='title'
-        error={formStore.title.error}
-        value={formStore.title.value}
-        onChange={formStore.title.onChange}
+        error={postFormState.title.error}
+        value={postFormState.title.value}
+        onChange={postFormState.title.onChange}
       />
       <Input
         type='text'
@@ -48,9 +49,9 @@ export class FormComponent extends React.Component<FormComponentProps, any> {
         rows={3}
         label='Message'
         name='message'
-        error={formStore.message.error}
-        value={formStore.message.value}
-        onChange={formStore.message.onChange}
+        error={postFormState.message.error}
+        value={postFormState.message.value}
+        onChange={postFormState.message.onChange}
       />
 
       <Button
@@ -63,7 +64,7 @@ export class FormComponent extends React.Component<FormComponentProps, any> {
         label='Submit'
         onClick={formStore.submit}
         raised
-        disabled={formStore.form.hasError}
+        disabled={postFormState.form.hasError}
         primary
       />
 

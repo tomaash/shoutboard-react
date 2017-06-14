@@ -1,10 +1,8 @@
 import { observable, action } from 'mobx'
-import { FormState, FieldState } from 'formstate'
 import gql from 'graphql-tag'
-import { check, checkRequired } from './validatorUtils'
 import { AppStore } from '../app.store'
 import { RouterStore } from '../router.store'
-import * as isLength from 'validator/lib/isLength'
+import { PostFormState } from './post.formstate'
 
 const AddPostMutation = gql`
   mutation AddPostMutation($name: String!, $title: String!, $message: String!) {
@@ -21,39 +19,30 @@ const AddPostMutation = gql`
 export class FormStore {
   appStore: AppStore
   routerStore: RouterStore
-  title = new FieldState('').validators(
-    checkRequired('Title is required'),
-    check(isLength, 'Title must be at least 4 characters long.', { min: 4 }),
-    check(isLength, 'Title cannot be more than 24 characters long.', { max: 24 }),
-  )
-  message = new FieldState('').validators(
-    checkRequired('Message cannot be blank.'),
-    check(isLength, 'Message is too short, minimum is 50 characters.', { min: 50 }),
-    check(isLength, 'Message is too long, maximum is 1000 characters.', { max: 1000 }),
-  )
-  form = new FormState({
-    title: this.title,
-    message: this.message
-  })
+  postFormState: PostFormState
+
   constructor() {
     this.appStore = AppStore.getInstance()
     this.routerStore = RouterStore.getInstance()
+    this.postFormState = new PostFormState()
   }
+
   submit = async () => {
-    await this.form.validate()
-    if (this.form.error) return
+    await this.postFormState.form.validate()
+    if (this.postFormState.form.error) return
     const result = await this.appStore.apolloClient.mutate(
       {
         mutation: AddPostMutation,
         variables: {
           name: this.appStore.username,
-          title: this.title.value,
-          message: this.message.value
+          title: this.postFormState.title.value,
+          message: this.postFormState.message.value
         }
       }
     )
     this.goBack()
   }
+
   goBack = () => {
     this.routerStore.history.push('/posts')
   }
