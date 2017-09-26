@@ -14,6 +14,24 @@ const PostsQuery = gql`
   }
 `
 
+const PostsSubscription = gql`
+subscription PostsSubscription($name: String!){
+  Post(filter: {
+    mutation_in: [CREATED],
+    node: {
+      name: $name
+    }
+  }) {
+    node {
+      id,
+      name,
+      title,
+      message
+    }
+  }
+}
+`
+
 interface Post {
   id: string
   name: string
@@ -27,11 +45,27 @@ interface PostsQueryResult {
 
 export class PostsStore {
   appStore: AppStore
+  postSubscription
 
   @observable posts: Array<Post> = []
 
   constructor() {
+    let self = this
     this.appStore = AppStore.getInstance()
+    this.postSubscription = this.appStore.apolloClient.subscribe({
+      query: PostsSubscription,
+      // This way realtime updates will work only when both posting and reading users have the same name. Proof of concept.
+      variables: { name: this.appStore.username }
+    }).subscribe({
+      next(data) {
+        self.posts.unshift(data.Post.node)
+      },
+      error(err) { console.error('err', err) },
+    })
+  }
+
+  destructor() {
+    this.postSubscription.unsubscribe()
   }
 
   async initializePosts() {

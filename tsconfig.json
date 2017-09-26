@@ -13,6 +13,7 @@
     "removeComments": true,
     "strictNullChecks": false,
     "importHelpers": true,
+    "skipLibCheck": true,
     "outDir": "build",
     "lib": [
       "es6",

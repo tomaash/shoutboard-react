@@ -18,6 +18,10 @@ export class Posts extends React.Component<any, any> {
     this.postsStore.initializePosts()
   }
 
+  componentWillUnmount() {
+    this.postsStore.destructor()
+  }
+
   render() {
     return <Provider postsStore={this.postsStore}>
       <PostsComponent />
