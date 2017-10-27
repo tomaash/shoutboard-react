@@ -9,6 +9,7 @@ var outPath = path.join(__dirname, './dist');
 // plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var reactToolboxVariables = require('./src/app/reactToolboxVariables')
 
@@ -115,7 +116,10 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'assets/index.html'
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: '../static' }
+    ])
   ],
   devServer: {
     contentBase: sourcePath,
